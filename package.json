@@ -1,0 +1,14 @@
+{
+  "name": "brushup-sample",
+  "version": "0.0.0",
+  "main": "Gruntfile.js",
+  "author": "Public Domain",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-html-inspector": "~0.1.4",
+    "grunt-contrib-csslint": "~0.1.2",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}

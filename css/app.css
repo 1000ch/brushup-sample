@@ -1,0 +1,51 @@
+html {
+  font-family: "Helvetica Neue";
+  font-size: 16px;
+  line-height: 1.5;
+} 
+
+.outline {
+  margin: 0px auto;
+  min-width: 320px;
+  max-width: 960px;
+}
+
+.headline {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.global-nav ul {
+  display: table;
+  width: 100%;
+}
+
+.global-nav ul li {
+  display: table-cell;
+  width: 25px;
+}
+
+.global-nav ul li a {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  background: #ccc;
+  text-align: center;
+  text-decoration: none;
+}
+
+.global-nav ul li a:hover {
+  background: #999;
+}
+
+.global-nav ul li a.active {
+  background: #666;
+}
+
+.paragraph {
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}

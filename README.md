@@ -1,4 +1,9 @@
-brushup-sample
-==============
+# brushup-sample
 
-Sample.
+## About
+
+Sample files.
+
+## License
+
+Public Domain.
