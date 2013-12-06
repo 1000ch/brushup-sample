@@ -1,9 +1,14 @@
 {
   "name": "brushup-sample",
+  "description": "Brush up sample.",
   "version": "0.0.0",
-  "main": "Gruntfile.js",
-  "author": "Public Domain",
-  "license": "MIT",
+  "main": "gruntfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/1000ch/brushup-sample"
+  },
+  "author": "1000ch",
+  "license": "Public Domain",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-html-inspector": "~0.1.4",
