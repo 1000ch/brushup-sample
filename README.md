@@ -9,7 +9,7 @@ HTMLInspectorとCSSLintとJSHintと試すリポジトリ。
 サンプルコードはライセンスありません。
 HTMLInspector、CSSLint、JSHintはそれぞれに準じます。
 
-# [1000ch/brushup-sample](http://github.com/1000ch/brushup-sample)の試し方
+# 遊び方
 
 リポジトリをクローンしてきて、そのリポジトリに移動する。
 
