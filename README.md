@@ -11,15 +11,15 @@ HTMLInspectorとCSSLintとJSHintと試すリポジトリ。
 
 ## 0. やりかた
 
-### gitがない人は
+### 0.1 gitがない人は
 
 [ダウンロード](http://git-scm.com/downloads)してインストールする。黒い画面で`git`コマンドが使えるようになる。
 
-### nodeがない人は
+### 0.2 nodeがない人は
 
 [ダウンロード](http://nodejs.org/)してインストールする。黒い画面で`node`と`npm`コマンドが使えるようになる
 
-### grunt-cliのインストール
+### 0.3 grunt-cliのインストール
 
 ```sh
 $ npm install -g grunt-cli
@@ -27,7 +27,7 @@ $ npm install -g grunt-cli
 
 黒い画面で実行し、インストールする。`grunt`コマンドが使えるようになる。
 
-### リポジトリのクローン
+### 0.4 リポジトリのクローン
 
 リポジトリをクローンしてきて、そのリポジトリに移動する。
 
@@ -50,7 +50,7 @@ $ grunt [watch]
 
 これは`grunt-contrib-watch`モジュールを使って実現しており、設定は[`gruntfile.js`の12行目から25行目](https://github.com/1000ch/brushup-sample/blob/master/gruntfile.js#l12-25)に書いてある。今回は各タスクを別途実行して、HTML/CSS/JSそれぞれを修正していく。
 
-### 黒い画面お手上げな人
+### 0.5 黒い画面お手上げな人
 
 このリポジトリのファイルのcssファイルやjsファイルを[CSSLint](http://csslint.net/)や[JSHint](http://jshint.com/)に貼り付けて実行してみてください。
 
@@ -62,7 +62,7 @@ $ grunt [watch]
 $ grunt html-inspector
 ```
 
-### Failed rule "validate-attributes".
+### 1.1 Failed rule "validate-attributes".
 
 > The 'bgcolor' attribute is no longer valid on the `<body>` element and should not be used.
 
@@ -78,19 +78,19 @@ body {
 }
 ```
 
-### Failed rule "unused-classes".
+### 1.2 Failed rule "unused-classes".
 
 > The class 'hoge' is used in the HTML but not found in any stylesheet.
 
 HTML中に`hoge`というクラスが使用されているが、CSS中にその定義が存在していない。JSで`getElementsByClassName`する場合等は別だが、CSSの参照コストがかかるので定義されていないクラスは指定しない。
 
-### Failed rule "unnecessary-elements".
+### 1.3 Failed rule "unnecessary-elements".
 
 > Do not use `<div>` or `<span>` elements without any attributes.
 
 CSSのスタイリングや属性値が持たない`<div>`や`<span>`は、必要ないはず。HTMLでのネストを深くすることで様々な参照コストを上げる可能性があるので、避けること。
 
-### Failed rule "validate-attributes".
+### 1.4 Failed rule "validate-attributes".
 
 > The 'alt' attribute is required for <img> elements.
 
@@ -100,7 +100,7 @@ CSSのスタイリングや属性値が持たない`<div>`や`<span>`は、必�
 
 - [Empty image src can destroy your site](http://www.nczonline.net/blog/2009/11/30/empty-image-src-can-destroy-your-site/)
 
-### Failed rule "validate-elements".
+### 1.5 Failed rule "validate-elements".
 
 > The `<font>` element is obsolete and should not be used.
 
@@ -108,7 +108,7 @@ HTMLは文書構造の定義、CSSは装飾という分離をするため、`<fo
 
 - [HTML 要素リファレンス](https://developer.mozilla.org/ja/docs/Web/HTML/Element)
 
-### Failed rule "inline-event-handlers".
+### 1.6 Failed rule "inline-event-handlers".
 
 > An 'onclick' attribute was found in the HTML. Use external scripts for event binding instead.
 
@@ -132,7 +132,7 @@ document.getElementById('js-button').addEventListener('click', function() {
 
 JS中でこのようにクリックイベントを定義する。
 
-### Failed rule "script-placement".
+### 1.7 Failed rule "script-placement".
 
 > `<script>` elements should appear right before the closing `</body>` tag for optimal performance.
 
@@ -189,7 +189,7 @@ JS中でこのようにクリックイベントを定義する。
 $ grunt csslint
 ```
 
-### [L8:C11] zero-units
+### 2.1 [L8:C11] zero-units
 
 > Values of 0 shouldn't have units specified. You don't need to specify units when a value is 0.
 
@@ -213,7 +213,7 @@ $ grunt csslint
 }
 ```
 
-### [L42:C19] overqualified-elements
+### 2.2 [L42:C19] overqualified-elements
 
 > Element (a.active) is overqualified, just use .active without element name. Don't use classes or IDs with elements (a.foo or a#foo).
 
@@ -242,7 +242,7 @@ div.header a.logo img {}
 - [Code smells in CSS 日本語訳](http://enja.studiomohawk.com/2013/03/24/code-smells-in-css/)
 - [Code smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
 
-### [L46:C1] shorthand
+### 2.3 [L46:C1] shorthand
 
 > The properties padding-top, padding-bottom, padding-left, padding-right can be replaced by padding. Use shorthand properties where possible.
 
@@ -278,7 +278,7 @@ div.header a.logo img {}
 
 ショートハンドで記述可能なプロパティは`margin`や`padding`の他にも`linear-gradient`や`border`などがあるが、可読性を保った範囲で行っていく。
 
-### [L1:C1] import
+### 2.4 [L1:C1] import
 
 > @import prevents parallel downloads, use <link> instead. Don't use @import, use <link> instead.
 
@@ -309,7 +309,7 @@ div.header a.logo img {}
 $ grunt jshint
 ```
 
-### [L2:C14] W061: eval can be harmful.
+### 3.1 [L2:C14] W061: eval can be harmful.
 
 evalで評価された文字列のJavaScriptは、スコープがわかりにくい上にパフォーマンスが低いため使うべきではない。
 
@@ -327,8 +327,8 @@ setTimeout(function() {
 
 同等の処理をこのように記述することが可能。
 
-### [L5:C30] W010: The object literal notation {} is preferrable.
-### [L5:C32] W033: Missing semicolon.
+### 3.2 [L5:C30] W010: The object literal notation {} is preferrable.
+### 3.3 [L5:C32] W033: Missing semicolon.
 
 セミコロンが抜けているのと、オブジェクトの初期化にはリテラル(`{}`)を使ったほうが良い。
 
@@ -344,7 +344,7 @@ var sampleObject = {};
 
 と書いたほうが良い。初期化に関しては後述の、配列の初期化と同様の理由である。
 
-### [L6:C28] W009: The array literal notation [] is preferrable.
+### 3.4 [L6:C28] W009: The array literal notation [] is preferrable.
 
 オブジェクトに続いて、配列の初期化もリテラルを使った方がよい。
 
@@ -363,7 +363,7 @@ var sampleArray = [];
 
 - [Arrayコンストラクター](http://bonsaiden.github.io/JavaScript-Garden/ja/#array.constructor)
 
-### [L9:C19] W041: Use '!==' to compare with 'null'.
+### 3.5 [L9:C19] W041: Use '!==' to compare with 'null'.
 
 厳密等価演算子（`==`ではなく`===`、`!=`ではなく`!==`）を使用するべき。
 
