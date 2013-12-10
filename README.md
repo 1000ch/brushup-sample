@@ -50,6 +50,10 @@ $ grunt [watch]
 
 これは`grunt-contrib-watch`モジュールを使って実現しており、設定は[`gruntfile.js`の12行目から25行目](https://github.com/1000ch/brushup-sample/blob/master/gruntfile.js#l12-25)に書いてある。今回は各タスクを別途実行して、HTML/CSS/JSそれぞれを修正していく。
 
+### 黒い画面お手上げな人
+
+このリポジトリのファイルのcssファイルやjsファイルを[CSSLint](http://csslint.net/)や[JSHint](http://jshint.com/)に貼り付けて実行してみてください。
+
 ## 1. [HTMLInspector](https://github.com/philipwalton/html-inspector) - [grunt-html-inspector](https://github.com/gotdibbs/grunt-html-inspector)
 
 `grunt-html-inspector`モジュールを利用して、設定は[`gruntfile.js`の3行目から5行目](https://github.com/1000ch/brushup-sample/blob/master/gruntfile.js#l3-5)に書いてある。
@@ -78,7 +82,7 @@ body {
 
 > The class 'hoge' is used in the HTML but not found in any stylesheet.
 
-HTML中に`hoge`というクラスが使用されているが、CSS中にその定義が存在していない。JSで`getElementsByClassName`する場合は別だが、CSSの参照コストがかかるので定義されていないクラスは指定しない。
+HTML中に`hoge`というクラスが使用されているが、CSS中にその定義が存在していない。JSで`getElementsByClassName`する場合等は別だが、CSSの参照コストがかかるので定義されていないクラスは指定しない。
 
 ### Failed rule "unnecessary-elements".
 
