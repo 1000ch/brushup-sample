@@ -7,9 +7,27 @@ HTMLInspectorとCSSLintとJSHintと試すリポジトリ。
 ## License
 
 サンプルコードはライセンスありません。
-HTMLInspector、CSSLint、JSHintはそれぞれに準じます。
+その他Grunt、HTMLInspector、CSSLint、JSHint等はそれぞれに準じます。
 
 ## 0. やりかた
+
+### gitがない人は
+
+[ダウンロード](http://git-scm.com/downloads)してインストールする。黒い画面で`git`コマンドが使えるようになる。
+
+### nodeがない人は
+
+[ダウンロード](http://nodejs.org/)してインストールする。黒い画面で`node`と`npm`コマンドが使えるようになる
+
+### grunt-cliのインストール
+
+```sh
+$ npm install -g grunt-cli
+```
+
+黒い画面で実行し、インストールする。`grunt`コマンドが使えるようになる。
+
+### リポジトリのクローン
 
 リポジトリをクローンしてきて、そのリポジトリに移動する。
 
@@ -40,7 +58,7 @@ $ grunt [watch]
 $ grunt html-inspector
 ```
 
-## Failed rule "validate-attributes".
+### Failed rule "validate-attributes".
 
 > The 'bgcolor' attribute is no longer valid on the `<body>` element and should not be used.
 
@@ -67,6 +85,24 @@ HTML中に`hoge`というクラスが使用されているが、CSS中にその�
 > Do not use `<div>` or `<span>` elements without any attributes.
 
 CSSのスタイリングや属性値が持たない`<div>`や`<span>`は、必要ないはず。HTMLでのネストを深くすることで様々な参照コストを上げる可能性があるので、避けること。
+
+### Failed rule "validate-attributes".
+
+> The 'alt' attribute is required for <img> elements.
+
+必須とされている属性は付与すること。`<img>`については、 **srcを空にしない** 、 **widthとheightを指定する** ことも忘れずにやること。
+`<img>`等の`src=''`、`<a>`や`<link>`の`href=''`を空文字で指定すると、無駄なHTTPリクエストが発生してしまうブラウザがある。
+それによってパフォーマンスが低下するだけでなく、セッションの管理のためにトークン等を利用している場合はリクエストによってトークンが更新されてしまい動かなくなってしまう可能性もある。また、`width`と`height`を指定することでHTMLの解析時に`<img>`の占める領域が決定するため、画像のダウンロード後に発生する再レイアウトを予防することが可能。
+
+- [Empty image src can destroy your site](http://www.nczonline.net/blog/2009/11/30/empty-image-src-can-destroy-your-site/)
+
+### Failed rule "validate-elements".
+
+> The `<font>` element is obsolete and should not be used.
+
+HTMLは文書構造の定義、CSSは装飾という分離をするため、`<font>`タグは非推奨になった。同様の理由で`<center>`や`<basefont>`等も非推奨である。
+
+- [HTML 要素リファレンス](https://developer.mozilla.org/ja/docs/Web/HTML/Element)
 
 ### Failed rule "inline-event-handlers".
 
@@ -290,7 +326,7 @@ setTimeout(function() {
 ### [L5:C30] W010: The object literal notation {} is preferrable.
 ### [L5:C32] W033: Missing semicolon.
 
-セミコロンが抜けているのと、オブジェクトの初期化にはリテラル(`{}`)を使ったほうがいいと言われている。
+セミコロンが抜けているのと、オブジェクトの初期化にはリテラル(`{}`)を使ったほうが良い。
 
 ```js
 var sampleObject = new Object();
@@ -319,7 +355,6 @@ var sampleArray = [];
 ```
 
 と書いたほうが良い。
-
 短く簡潔に書けるということと、コンストラクタを使うケースは引数の取り方がわかりにいので、思わぬ不具合を招く場合がある。
 
 - [Arrayコンストラクター](http://bonsaiden.github.io/JavaScript-Garden/ja/#array.constructor)
@@ -340,4 +375,5 @@ if(sampleObject !== null) {
 }
 ```
 
-と書いたほうが良い。等価演算子は内部的に型を変換しているため、低速であり評価のされ方で誤解を招く場合がある。[厳密等価演算子は型変換がない分高速](http://jsperf.com/equals-operator-vs-strict-equals-operator/2)である。
+と書いたほうが良い。
+等価演算子は内部的に型を変換しているため、低速であり評価のされ方で誤解を招く場合がある。[厳密等価演算子は型変換がない分高速](http://jsperf.com/equals-operator-vs-strict-equals-operator/2)である。
