@@ -9,7 +9,7 @@ HTMLInspectorとCSSLintとJSHintと試すリポジトリ。
 サンプルコードはライセンスありません。
 HTMLInspector、CSSLint、JSHintはそれぞれに準じます。
 
-# やりかた
+## 0. やりかた
 
 リポジトリをクローンしてきて、そのリポジトリに移動する。
 
@@ -32,7 +32,7 @@ $ grunt [watch]
 
 これは`grunt-contrib-watch`モジュールを使って実現しており、設定は[`gruntfile.js`の12行目から25行目](https://github.com/1000ch/brushup-sample/blob/master/gruntfile.js#l12-25)に書いてある。今回は各タスクを別途実行して、HTML/CSS/JSそれぞれを修正していく。
 
-# HTMLInspector - grunt-html-inspector
+## 1. [HTMLInspector](https://github.com/philipwalton/html-inspector) - [grunt-html-inspector](https://github.com/gotdibbs/grunt-html-inspector)
 
 `grunt-html-inspector`モジュールを利用して、設定は[`gruntfile.js`の3行目から5行目](https://github.com/1000ch/brushup-sample/blob/master/gruntfile.js#l3-5)に書いてある。
 
@@ -56,19 +56,19 @@ body {
 }
 ```
 
-## Failed rule "unused-classes".
+### Failed rule "unused-classes".
 
 > The class 'hoge' is used in the HTML but not found in any stylesheet.
 
 HTML中に`hoge`というクラスが使用されているが、CSS中にその定義が存在していない。JSで`getElementsByClassName`する場合は別だが、CSSの参照コストがかかるので定義されていないクラスは指定しない。
 
-## Failed rule "unnecessary-elements".
+### Failed rule "unnecessary-elements".
 
 > Do not use `<div>` or `<span>` elements without any attributes.
 
 CSSのスタイリングや属性値が持たない`<div>`や`<span>`は、必要ないはず。HTMLでのネストを深くすることで様々な参照コストを上げる可能性があるので、避けること。
 
-## Failed rule "inline-event-handlers".
+### Failed rule "inline-event-handlers".
 
 > An 'onclick' attribute was found in the HTML. Use external scripts for event binding instead.
 
@@ -92,7 +92,7 @@ document.getElementById('js-button').addEventListener('click', function() {
 
 JS中でこのようにクリックイベントを定義する。
 
-## Failed rule "script-placement".
+### Failed rule "script-placement".
 
 > `<script>` elements should appear right before the closing `</body>` tag for optimal performance.
 
@@ -141,7 +141,7 @@ JS中でこのようにクリックイベントを定義する。
 `<script>`タグを`<head>`の中に配置してはいけないわけではない。
 `<body>`の評価より先にされなければならない場合（例えば要素をJSでゴリゴリ作るとか）はそうするべき。
 
-# CSSLint - grunt-contrib-csslint
+## 2. [CSSLint](http://csslint.net/) - [grunt-contrib-csslint](https://github.com/gruntjs/grunt-contrib-csslint)
 
 `grunt-contrib-csslint`モジュールを利用して、設定は[`gruntfile.js`の6行目から8行目](https://github.com/1000ch/brushup-sample/blob/master/gruntfile.js#l6-8)に書いてある。
 
@@ -149,7 +149,7 @@ JS中でこのようにクリックイベントを定義する。
 $ grunt csslint
 ```
 
-## [L8:C11] zero-units
+### [L8:C11] zero-units
 
 > Values of 0 shouldn't have units specified. You don't need to specify units when a value is 0.
 
@@ -173,7 +173,7 @@ $ grunt csslint
 }
 ```
 
-## [L42:C19] overqualified-elements
+### [L42:C19] overqualified-elements
 
 > Element (a.active) is overqualified, just use .active without element name. Don't use classes or IDs with elements (a.foo or a#foo).
 
@@ -202,7 +202,7 @@ div.header a.logo img {}
 - [Code smells in CSS 日本語訳](http://enja.studiomohawk.com/2013/03/24/code-smells-in-css/)
 - [Code smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
 
-## [L46:C1] shorthand
+### [L46:C1] shorthand
 
 > The properties padding-top, padding-bottom, padding-left, padding-right can be replaced by padding. Use shorthand properties where possible.
 
@@ -238,7 +238,7 @@ div.header a.logo img {}
 
 ショートハンドで記述可能なプロパティは`margin`や`padding`の他にも`linear-gradient`や`border`などがあるが、可読性を保った範囲で行っていく。
 
-## [L1:C1] import
+### [L1:C1] import
 
 > @import prevents parallel downloads, use <link> instead. Don't use @import, use <link> instead.
 
@@ -261,7 +261,7 @@ div.header a.logo img {}
 - [@importを使うべきでない理由](http://screw-axis.com/2009/06/07/css-import%E3%82%92%E4%BD%BF%E3%81%86%E3%81%B9%E3%81%8D%E3%81%A7%E3%81%AA%E3%81%84%E7%90%86%E7%94%B1/)
 - [Mobile Front-end Optimization Standard:2012](https://speakerdeck.com/t32k/mobile-front-end-optimization-standard-2012)
 
-# JShint - grunt-contrib-jshint
+## 3. [JShint](http://jshint.com) - [grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint)
 
 `grunt-contrib-jshint`モジュールを利用して、設定は[`gruntfile.js`の6行目から8行目](https://github.com/1000ch/brushup-sample/blob/master/gruntfile.js#l9-11)に書いてある。
 
@@ -269,9 +269,7 @@ div.header a.logo img {}
 $ grunt jshint
 ```
 
-
-
-## [L2:C14] W061: eval can be harmful.
+### [L2:C14] W061: eval can be harmful.
 
 evalで評価された文字列のJavaScriptは、スコープがわかりにくい上にパフォーマンスが低いため使うべきではない。
 
@@ -289,10 +287,8 @@ setTimeout(function() {
 
 同等の処理をこのように記述することが可能。
 
-
-
-## [L5:C30] W010: The object literal notation {} is preferrable.
-## [L5:C32] W033: Missing semicolon.
+### [L5:C30] W010: The object literal notation {} is preferrable.
+### [L5:C32] W033: Missing semicolon.
 
 セミコロンが抜けているのと、オブジェクトの初期化にはリテラル(`{}`)を使ったほうがいいと言われている。
 
@@ -308,7 +304,7 @@ var sampleObject = {};
 
 と書いたほうが良い。初期化に関しては後述の、配列の初期化と同様の理由である。
 
-## [L6:C28] W009: The array literal notation [] is preferrable.
+### [L6:C28] W009: The array literal notation [] is preferrable.
 
 オブジェクトに続いて、配列の初期化もリテラルを使った方がよい。
 
@@ -328,7 +324,7 @@ var sampleArray = [];
 
 - [Arrayコンストラクター](http://bonsaiden.github.io/JavaScript-Garden/ja/#array.constructor)
 
-## [L9:C19] W041: Use '!==' to compare with 'null'.
+### [L9:C19] W041: Use '!==' to compare with 'null'.
 
 厳密等価演算子（`==`ではなく`===`、`!=`ではなく`!==`）を使用するべき。
 
